@@ -35,7 +35,15 @@ const Admin = () => {
             <div className="body mt-5 rounded flex flex-wrap gap-x-3 ">
               {menus &&
                 menus.map((menu) => (
-                  <Product.title title={menu.nama} image={"bakso.jpg"} />
+                  <Product.title
+                    title={menu.nama}
+                    image={`public/images/${menu.category.nama}/${menu.gambar}`}
+                    harga={menu.harga.toLocaleString("id-ID", {
+                      style: "currency",
+                      currency: "IDR",
+                    })}
+                    key={menu.id}
+                  />
                 ))}
             </div>
           </Product>

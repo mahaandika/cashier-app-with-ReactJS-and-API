@@ -7,12 +7,13 @@ const Product = ({ children }) => {
   );
 };
 
-function Body({ title, image }) {
+function Body({ title, image, harga }) {
   return (
     <>
       <div className="w-[calc(33.33%-12px)]">
-        <img src={`public/images/makanan/${image}`} alt="" className="w-full" />
+        <img src={image} alt="" className="w-full" />
         <h1 className="font-semibold capitalize text-2xl my-3">{title}</h1>
+        <p className="mb-3 font-semibold">{harga}</p>
         <button className="px-3 py-1.5 bg-blue-400 rounded mb-10">
           tambah
         </button>

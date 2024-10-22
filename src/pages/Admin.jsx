@@ -11,10 +11,11 @@ const Admin = () => {
   const url = "http://localhost:8000/";
   const [menus, setMenus] = useState([]);
   const [categorys, setCategorys] = useState([]);
+  const [categorysChoose, setCategorysChoose] = useState("Makanan");
 
   useEffect(() => {
     axios
-      .get(url + "products")
+      .get(url + "products?category.nama=" + categorysChoose)
       .then((res) => {
         const menus = res.data;
         setMenus(menus);
@@ -36,13 +37,35 @@ const Admin = () => {
       });
   }, []);
 
+  function changeCategory(value) {
+    setCategorysChoose(value);
+    setMenus([]);
+
+    axios
+      .get(url + "products?category.nama=" + value)
+      .then((res) => {
+        const menus = res.data;
+        setMenus(menus);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <>
       <Navbar />
       <div className="flex flex-row w-full mt-10">
         <div className="category  w-full basis-[30%]">
           {categorys &&
-            categorys.map((category) => <Category>{category.nama}</Category>)}
+            categorys.map((category) => (
+              <Category
+                key={category.id}
+                changeCategory={() => changeCategory(category.nama)}
+              >
+                {category.nama}
+              </Category>
+            ))}
         </div>
 
         <div className="product  basis-1/2 w-full">

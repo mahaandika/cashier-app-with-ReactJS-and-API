@@ -10,6 +10,7 @@ import { useEffect } from "react";
 const Admin = () => {
   const url = "http://localhost:8000/";
   const [menus, setMenus] = useState([]);
+  const [categorys, setCategorys] = useState([]);
 
   useEffect(() => {
     axios
@@ -23,13 +24,27 @@ const Admin = () => {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(url + "categories")
+      .then((res) => {
+        const categorys = res.data;
+        setCategorys(categorys);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <>
       <Navbar />
       <div className="flex flex-row w-full mt-10">
         <div className="category  w-full basis-[30%]">
-          <Category />
+          {categorys &&
+            categorys.map((category) => <Category>{category.nama}</Category>)}
         </div>
+
         <div className="product  basis-1/2 w-full">
           <Product>
             <div className="body mt-5 rounded flex flex-wrap gap-x-3 ">
@@ -48,6 +63,7 @@ const Admin = () => {
             </div>
           </Product>
         </div>
+
         <div className="cart w-full basis-[20%]">
           <Cart />
         </div>

@@ -57,15 +57,16 @@ const Admin = () => {
       <Navbar />
       <div className="flex flex-row w-full mt-10">
         <div className="category  w-full basis-[30%]">
-          {categorys &&
-            categorys.map((category) => (
-              <Category
-                key={category.id}
-                changeCategory={() => changeCategory(category.nama)}
-              >
-                {category.nama}
-              </Category>
-            ))}
+          <Category>
+            {categorys &&
+              categorys.map((category) => (
+                <Category.Body
+                  key={category.id}
+                  nama={category.nama}
+                  changeCategory={() => changeCategory(category.nama)}
+                />
+              ))}
+          </Category>
         </div>
 
         <div className="product  basis-1/2 w-full">

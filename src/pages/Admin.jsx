@@ -39,6 +39,18 @@ const Admin = () => {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(url + "keranjangs")
+      .then((res) => {
+        const carts = res.data;
+        setCarts(carts);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   function changeCategory(value) {
     setCategorysChoose(value);
     setMenus([]);
@@ -80,7 +92,7 @@ const Admin = () => {
         axios.put(url + "keranjangs/" + res.data[0].id, tmpCart).then((res) => {
           Swal.fire({
             title: "success",
-            text: tmpCart.product.nama + "has been added",
+            text: tmpCart.product.nama + " has been added",
             icon: "success",
           });
         });
@@ -126,7 +138,18 @@ const Admin = () => {
         </div>
 
         <div className="cart w-full basis-[20%]">
-          <Cart />
+          <Cart>
+            {carts.length !== 0 &&
+              carts.map((cart) => (
+                <Cart.Body
+                  key={cart.id}
+                  jumlah={cart.jumlah}
+                  name={cart.product.nama}
+                  price={cart.product.harga}
+                  totalPrice={cart.totalPrice}
+                />
+              ))}
+          </Cart>
         </div>
       </div>
     </>

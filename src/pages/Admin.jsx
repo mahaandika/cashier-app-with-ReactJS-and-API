@@ -49,7 +49,7 @@ const Admin = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [carts]);
 
   function changeCategory(value) {
     setCategorysChoose(value);
@@ -139,13 +139,16 @@ const Admin = () => {
 
         <div className="cart w-full basis-[20%]">
           <Cart>
-            {carts.length !== 0 &&
+            {carts &&
               carts.map((cart) => (
                 <Cart.Body
                   key={cart.id}
                   jumlah={cart.jumlah}
                   name={cart.product.nama}
-                  price={cart.product.harga}
+                  price={cart.product.harga.toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  })}
                   totalPrice={cart.totalPrice}
                 />
               ))}

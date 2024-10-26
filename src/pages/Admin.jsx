@@ -138,7 +138,7 @@ const Admin = () => {
         </div>
 
         <div className="cart w-full basis-[20%]">
-          <Cart>
+          <Cart carts={carts}>
             {carts &&
               carts.map((cart) => (
                 <Cart.Body
@@ -149,7 +149,10 @@ const Admin = () => {
                     style: "currency",
                     currency: "IDR",
                   })}
-                  totalPrice={cart.totalPrice}
+                  totalPrice={cart.totalPrice.toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  })}
                 />
               ))}
           </Cart>

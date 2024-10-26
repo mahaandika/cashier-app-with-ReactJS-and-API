@@ -1,8 +1,11 @@
-const Cart = ({ children }) => {
+import TotalPrice from "./TotalPrice";
+
+const Cart = ({ children, carts }) => {
   return (
     <>
       <h1 className="capitalize text-2xl px-5 font-semibold">cart</h1>
       <div className="cartBody flex gap-x-5 p-3 flex-wrap">{children}</div>
+      <TotalPrice carts={carts} />
     </>
   );
 };

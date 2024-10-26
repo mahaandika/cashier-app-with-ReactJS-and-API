@@ -253,9 +253,8 @@
       }
     },
     {
-      "id": "2b3b",
-      "jumlah": 1,
-      "totalPrice": 5000,
+      "jumlah": 2,
+      "totalPrice": 10000,
       "product": {
         "id": "8",
         "kode": "K-08",
@@ -267,7 +266,8 @@
           "id": 3,
           "nama": "Cemilan"
         }
-      }
+      },
+      "id": "2b3b"
     }
   ],
   "pesanans": []
